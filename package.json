@@ -49,5 +49,5 @@
     "not dead",
     "not ie 11"
   ],
-  "main": "lib/schulte-grid.umd.js"
+  "main": "lib/schulte-grid.umd.min.js"
 }
