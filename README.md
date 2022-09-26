@@ -1,24 +1,14 @@
-# vue_math_component
+# vue_schulte_grid
 
-## Project setup
+## install
 ```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
+npm install vue_schulte_grid
 ```
 
-### Compiles and minifies for production
+### usage
 ```
-npm run build
-```
+import SchulteGrid from 'vue_schulte_grid'
+App.use(SchulteGrid)
 
-### Lints and fixes files
+<schulte-grid :grid="4" @errorTap="errorTap" @finishFun="showResult"></schulte-grid>
 ```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

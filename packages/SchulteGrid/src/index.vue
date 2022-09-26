@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
-
 export default {
   name: 'schulte-grid',
   props: {
@@ -33,8 +31,8 @@ export default {
   },
   methods: {
     generateGrid() {
-      this.gridNums = _.shuffle(Array.from({ length: this.amount }, (v, i) => i + 1))
-      this.gridNums = _.chunk(this.gridNums, this.grids)
+      this.gridNums = this.shuffle(Array.from({ length: this.amount }, (v, i) => i + 1))
+      this.gridNums = this.chunk(this.gridNums, this.grids)
     },
     tapNum(num) {
       const intNum = parseInt(num, 10)
@@ -51,31 +49,54 @@ export default {
     finish(time) {
       // 使用 $emit派发事件
       this.$emit('finishFun', time)
+    },
+    shuffle(arr) {
+      let l = arr.length
+      let index; let temp; const temparr = arr
+      while (l > 0) {
+        index = Math.floor(Math.random() * l)
+        temp = arr[l - 1]
+        temparr[l - 1] = arr[index]
+        temparr[index] = temp
+        l -= 1
+      }
+      return temparr
+    },
+    chunk(arr, size) {
+      return arr.reduce((acc, val, ind) => {
+        const subIndex = ind % size
+        if (!Array.isArray(acc[subIndex])) {
+          acc[subIndex] = [val]
+        } else {
+          acc[subIndex].push(val)
+        }
+        return acc
+      }, [])
     }
   }
 }
 </script>
 
 <style scoped>
-  .sg-wrap{
-    width:100%;
-  }
-  .sg-wrap{
-    border:.1rem solid #ccc;
-  }
-  .sg-rows{
-    display:flex;
-  }
-  .sg-rows .sg-cols{
-    display:flex;
-    flex:1;
-    justify-content: center;
-    align-items: center;
-    font-size:1.5rem;
-    border:.1rem solid #ccc;
-  }
-  .sg-rows .sg-cols:after{
-    content:'';
-    padding-top:100%;
-  }
+.sg-wrap{
+  width:100%;
+}
+.sg-wrap{
+  border:.1rem solid #ccc;
+}
+.sg-rows{
+  display:flex;
+}
+.sg-rows .sg-cols{
+  display:flex;
+  flex:1;
+  justify-content: center;
+  align-items: center;
+  font-size:1.5rem;
+  border:.1rem solid #ccc;
+}
+.sg-rows .sg-cols:after{
+  content:'';
+  padding-top:100%;
+}
 </style>

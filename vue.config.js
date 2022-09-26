@@ -17,5 +17,8 @@ module.exports = defineConfig({
       .end()
       .use('babel')
       .loader('babel-loader')
+    // config.set('externals', {
+    //   lodash: '_',
+    // })
   }
 })

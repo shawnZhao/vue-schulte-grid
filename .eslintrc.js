@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     es6: true,
+    'vue/setup-compiler-macros': true,
   },
   extends: [
     'airbnb-base',
